@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Enrollment Form</title>
+    <style>
+        body {
+            background-color: #52bce9;
+            font-family: Arial, sans-serif;
+            text-align: center; 
+            padding: 20px;
+        }
+        
+        .form-container {
+            background-color: #6f6f6f;
+            padding: 20px;
+            border-radius: 8px; 
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            max-width: 600px; 
+            margin: auto; 
+        }
+        
+        .form-container label {
+            display: block; 
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .form-container input[type=text],
+        .form-container input[type=email],
+        .form-container input[type=tel],
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+
+        .form-container input[type=submit] {
+            background-color: #4CAF50; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px; 
+            cursor: pointer;
+        }
+
+        .form-container input[type=submit]:hover {
+            background-color: #45a049; 
+        }
+        
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Enrollment Form</h2>
+        <form id="enrollmentForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br>
+
+            <label for="course">Course Selection:</label>
+            <select id="course" name="course" required>
+                <option value="">Select a course</option>
+                <option value="app-development">App Development</option>
+                <option value="web-development">Web Development</option>
+                <option value="java-programming">Java Programming</option>
+                <option value="ux-design">UX Design</option>
+            </select><br>
+
+            <label for="comments">Additional Comments:</label>
+            <textarea id="comments" name="comments" rows="4"></textarea><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let phone = document.getElementById('phone').value;
+            let course = document.getElementById('course').value;
+
+            // Simple email validation
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            // Simple phone number validation (10 digits)
+            let phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('Please enter a 10-digit phone number');
+                return false;
+            }
+
+            // If all validations pass, the form can be submitted
+            return true;
+        }
+    </script>
+</body>
+</html>
